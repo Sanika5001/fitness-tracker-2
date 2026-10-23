@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FitTrack - Register</title>
+  <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1 class="page-title">FitTrack</h1>
+      <p class="label-text">Create an account</p>
+    </div>
+
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="regUsername" class="label-text">Username</label>
+        <input type="text" id="regUsername" name="username" class="form-input" autocomplete="username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword" class="label-text">Password</label>
+        <input type="password" id="regPassword" name="password" class="form-input" autocomplete="new-password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword" class="label-text">Confirm password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" class="form-input" autocomplete="new-password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="regWeight" class="label-text">Weight (kg)</label>
+        <input type="number" id="regWeight" name="weight" class="form-input" min="20" max="300" step="0.5" placeholder="68" required>
+      </div>
+
+      <div id="authMsg" class="form-message"></div>
+
+      <button type="submit" class="btn-primary btn-full">Register</button>
+    </form>
+
+    <div class="auth-footer">
+      <p>
+        <span class="muted-text">Already have an account?</span>
+        <a href="login.html" class="auth-link">Log in</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="js/auth.js?v=1"></script>
+</body>
+</html>
