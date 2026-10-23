@@ -1,5 +1,7 @@
 #pragma once
 #include <memory>
+#include <string>
+#include "Clock.h"
 #include "UserManager.h"
 #include "Exercise.h"
 #include "WorkoutPlan.h"

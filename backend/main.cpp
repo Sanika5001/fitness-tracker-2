@@ -4,7 +4,12 @@
 #include <cctype>
 #include <memory>
 #include <cstdlib>
+#include <vector>
+#include <mutex>
+#include <algorithm>
+#include <filesystem>
 
+#include "Clock.h"
 #include "third_party/httplib.h"
 #include "third_party/json.hpp"
 #include "UserManager.h"

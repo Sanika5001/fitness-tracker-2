@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <cmath>
 #include "Exercise.h"
 #include "third_party/json.hpp"
 

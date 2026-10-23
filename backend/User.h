@@ -6,23 +6,13 @@
 #include <ctime>
 #include <iomanip>
 #include <sstream>
+#include <cmath>
+#include <algorithm>
+#include <utility>
+#include "Clock.h"
 #include "Exercise.h"
 #include "WorkoutPlan.h"
 #include "third_party/json.hpp"
-
-inline std::string getDateOffset(int offsetDays) {
-    auto now = std::chrono::system_clock::now() + std::chrono::hours(24 * offsetDays);
-    std::time_t tt = std::chrono::system_clock::to_time_t(now);
-    std::tm tm{};
-#if defined(_WIN32)
-    localtime_s(&tm, &tt);
-#else
-    localtime_r(&tt, &tm);
-#endif
-    char buf[32];
-    std::strftime(buf, sizeof(buf), "%Y-%m-%d", &tm);
-    return std::string(buf);
-}
 
 class User {
 private:
@@ -129,12 +119,7 @@ public:
     nlohmann::json weekSummary() const {
         auto now = std::chrono::system_clock::now();
         std::time_t tt = std::chrono::system_clock::to_time_t(now);
-        std::tm tm{};
-#if defined(_WIN32)
-        localtime_s(&tm, &tt);
-#else
-        localtime_r(&tt, &tm);
-#endif
+        std::tm tm = localTm(tt);
         char buf[32];
         std::strftime(buf, sizeof(buf), "%Y-%m-%d", &tm);
         std::string todayStr = buf;
@@ -147,12 +132,7 @@ public:
             int diff = i - daysSinceMonday;
             auto dayTime = now + std::chrono::hours(24 * diff);
             std::time_t dtt = std::chrono::system_clock::to_time_t(dayTime);
-            std::tm dtm{};
-#if defined(_WIN32)
-            localtime_s(&dtm, &dtt);
-#else
-            localtime_r(&dtm, &dtt);
-#endif
+            std::tm dtm = localTm(dtt);
             std::strftime(buf, sizeof(buf), "%Y-%m-%d", &dtm);
             std::string dateStr = buf;
             bool future = (dateStr > todayStr);
